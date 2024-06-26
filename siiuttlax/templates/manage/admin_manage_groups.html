@@ -1,0 +1,49 @@
+<!-- group/admin_manage_groups.html -->
+{% extends 'base.html' %}
+{% block title %}Administrar Grupos{% endblock %}
+
+{% block content %}
+    <h2>{% if group %}Actualizar Grupo{% else %}Crear Nuevo Grupo{% endif %}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button type="submit">{% if group %}Guardar Cambios{% else %}Guardar{% endif %}</button>
+    </form>
+
+    <h2>Lista de Grupos</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cuatrimestre</th>
+                <th>Grupo</th>
+                <th>Observaciones</th>
+                <th>Periodo</th>
+                <th>Carrera</th>
+                <th>Tutor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group in groups %}
+            <tr>
+                <td>{{ group.semester }}</td>
+                <td>{{ group.group }}</td>
+                <td>{{ group.observations }}</td>
+                <td>{{ group.period }}</td>
+                <td>{{ group.career }}</td>
+                <td>{{ group.tutor }}</td>
+                <td>
+                    <a href="{% url 'update_group' group.id %}">Editar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No hay grupos registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

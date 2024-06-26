@@ -1,0 +1,36 @@
+<!-- professor_dashboard.html -->
+
+{% extends 'base.html' %}
+{% block title %}Dashboard Profesor{% endblock %}
+
+{% block content %}
+    
+    <h2>Bienvenid@ Profesor/a {{ user.username }}</h2>
+    
+    <h3>Datos del Usuario:</h3>
+    <p>Nombre de usuario: {{ user.username }}</p>
+    <p>Nombre: {{ user.first_name }}</p>
+    <p>Apellido: {{ user.last_name }}</p>
+    <p>Título: {{ professor.title }}</p>
+    <p>Número de Empleado: {{ professor.employee_number }}</p>
+
+    <h3>Datos del Perfil de Profesor:</h3>
+    <p>Biografía: {{ professor.profile.biography }}</p>
+    <p>Sexo: {{ professor.profile.get_sexo_display }}</p>
+    <p>Edad: {{ professor.profile.age }}</p>
+    <p>Fecha de Nacimiento: {{ professor.profile.fecha_nacimiento }}</p>
+    <p>Lugar de Nacimiento: {{ professor.profile.lugar_nacimiento }}</p>
+    <p>Dirección: {{ professor.profile.direccion }}</p>
+    <p>Teléfono Celular: {{ professor.profile.celular }}</p>
+    <p>Teléfono de Emergencia: {{ professor.profile.telefono_emergencia }}</p>
+    <p>Número de Seguro Social: {{ professor.profile.numero_seguro_social }}</p>
+    <p>Tipo de Sangre: {{ professor.profile.tipo_sangre }}</p>
+
+    <h3>Acciones</h3>
+    <a href="{% url 'update_profile' %}">Actualizar Usuario</a>
+    <a href="{% url 'update_perfil' %}">Actualizar Perfil</a>
+    <a href="{% url 'students_list' %}">Lista de estudiantes</a>
+    <a href="{% url 'Login' %}">Cerrar Sesión</a>
+    
+{% endblock %}
+ 

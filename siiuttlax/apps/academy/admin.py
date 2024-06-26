@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Professor, Student
+from .models import Admin, Professor, Student
 
 @admin.register(Professor)
 class ProfessorAdmin(admin.ModelAdmin):
@@ -9,3 +9,7 @@ class ProfessorAdmin(admin.ModelAdmin):
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     fields = ('first_name', 'username', 'email', 'enrollment')
+
+@admin.register(Admin)
+class AdminAdmin(admin.ModelAdmin):
+    fields = ('first_name', 'username', 'email',)

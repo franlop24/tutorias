@@ -1,0 +1,42 @@
+<!-- admin_create_professor.html -->
+{% extends 'base.html' %}
+{% block title %}Crear Profesor{% endblock %}
+
+{% block content %}
+    <h2>Crear Nuevo Profesor</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button type="submit">Guardar</button>
+    </form>
+
+    <h3>Lista de Profesores Registrados</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre de usuario</th>
+                <th>Nombre Completo</th>
+                <th>Correo Electrónico</th>
+                <th>Título</th>
+                <th>Número de Empleado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for professor in professors %}
+            <tr>
+                <td>{{ professor.username }}</td>
+                <td>{{ professor.full_name }}</td>
+                <td>{{ professor.email }}</td>
+                <td>{{ professor.title }}</td>
+                <td>{{ professor.employee_number }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No hay profesores registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

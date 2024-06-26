@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Revisar Justificantes</title>
+</head>
+<body>
+    <h1>Revisar Justificantes</h1>
+    <ul>
+        {% for justificante in justificantes %}
+        <li>
+            {{ justificante.alumno.username }} - {{ justificante.fecha_falta }} - {{ justificante.motivo }}
+            <a href="{% url 'ruta_para_revisar_justificante' justificante.id %}">Revisar</a>
+        </li>
+        {% empty %}
+        <li>No hay justificantes pendientes.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

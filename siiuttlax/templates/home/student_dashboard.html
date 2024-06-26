@@ -1,0 +1,34 @@
+<!-- student_dashboard.html -->
+
+{% extends 'base.html' %}
+{% block title %}Dashboard Estudiante{% endblock %}
+
+{% block content %}
+    
+    <h2>Bienvenid@ {{ user.username }}</h2>
+    
+    <h3>Datos del Perfil de Estudiante:</h3>
+    <p>Nombre de usuario: {{ user.username }}</p>
+    <p>Nombre: {{ user.first_name }}</p>
+    <p>Apellido: {{ user.last_name }}</p>
+    <p>Matrícula: {{ user.student.enrollment }}</p> 
+    
+    <h3>Datos del Perfil de Estudiante:</h3>
+    <p>Biografía: {{ student.profile.biography }}</p>
+    <p>Sexo: {{ student.profile.get_sexo_display }}</p>
+    <p>Edad: {{ student.profile.age }}</p>
+    <p>Fecha de nacimiento: {{ student.profile.fecha_nacimiento }}</p>
+    <p>Lugar de nacimiento: {{ student.profile.lugar_nacimiento }}</p>
+    <p>Dirección: {{ student.profile.direccion }}</p>
+    <p>Teléfono Celular: {{ student.profile.celular }}</p>
+    <p>Teléfono de emergencia: {{ student.profile.telefono_emergencia }}</p>
+    <p>Número de seguro social: {{ student.profile.numero_seguro_social }}</p>
+    <p>Tipo de sangre: {{ student.profile.tipo_sangre }}</p>
+
+    <h3>Acciones</h3>
+    <a href="{% url 'fill_initial_interview' %}">Llenar Entrevista Inicial</a>
+    <a href="{% url 'update_profile' %}">Actualizar Usuario</a>
+    <a href="{% url 'update_perfil' %}">Actualizar Perfil</a>
+    <a href="{% url 'Login' %}">Cerrar Sesión</a>
+    
+{% endblock %}

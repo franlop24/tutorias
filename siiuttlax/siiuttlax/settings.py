@@ -32,13 +32,15 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # local Apps
-    'apps.seguimiento.apps.SeguimientoConfig',
+    'apps.justify.apps.JustifyConfig',
     'apps.career.apps.CareerConfig',
     'apps.home.apps.HomeConfig',
     'apps.period.apps.PeriodConfig',
     #'apps.hourly_load.apps.HourlyLoadConfig',
     'apps.group.apps.GroupConfig',
     'apps.academy.apps.AcademyConfig',
+    'apps.user_profile.apps.UserProfileConfig', 
+    'apps.interview.apps.InterviewConfig', 
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -140,3 +142,10 @@ STATICFILES_DIRS = [BASE_DIR / 'static'] # Comment in production
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings.py
+
+
+
+
+

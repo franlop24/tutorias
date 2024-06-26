@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es-en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&family=Comfortaa:wght@300;400;500&family=Didact+Gothic&family=Nova+Square&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/request_screen.css' %}" />
+    <title>Nuevo justificante</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+          <img src="{% static 'img/logoUTT.png'%}">
+          <h1>Sistema Integral de Tutorías</h1>
+      </div>
+
+      <ul class="navigation">
+          <li>
+              <a href="home.html">
+                  Inicio
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  UTT
+                  <i class='bx bxs-chevron-down js-arrow'></i>
+              </a>
+              <div class="subnavigation__wrapper">
+                  <ul>
+                      <li>
+                          <a href="#">
+                              Página UTT
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#">
+                              EVAUTT
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#">
+                              SAIIUTT
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+          <li>
+              <a href="#">
+                  Tutoría
+                  <i class='bx bxs-chevron-down js-arrow'></i>
+              </a>
+              <div class="subnavigation__wrapper">
+                  <ul>
+                      <li>
+                          <a href="justifying_student.html">
+                              Justificantes Alumno
+                          </a>
+                      </li>
+                      <li>
+                          <a href="justifying_teacher.html">
+                              Justificantes Tutores
+                          </a>
+                      </li>
+                      <li>
+                          <a href="justifying_principal.html">
+                              Justificantes Director
+                          </a>
+                      </li>
+                      <li>
+                          <a href="individual_monitoring.html">
+                              Seguimiento Individual
+                          </a>
+                      </li>
+                      <li>
+                          <a href="survey_leave.html">
+                              Encuesta Causa de Baja
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+          <li>
+              <a href="#">
+                  Servicios
+              </a>
+          </li>
+          <button>Cerrar Sesión</button>
+      </ul>
+  </nav>
+
+    <div class="flex-container">
+
+        <div class="back-container1">
+            <form method="post" enctype="multipart/form-data" class="form-inline">
+                {% csrf_token %}
+                <div class="text-container">
+                    <p class="p2">Asunto: Justificante.</p>
+                
+                    <label for="id_fecha">
+                        <p class="p3">El Carmen Xalpatlahuaya Tlax., a 
+                            <input type="text" id="id_fecha" name="fecha" class="date-day" value="{{ justificante_form.initial.fecha }}" readonly/>
+                    
+                            <label for="id_mes">de</label>
+                
+                            <input type="text" id="id_mes" name="mes" class="date-month" value="{{ justificante_form.initial.mes }}" readonly/>
+                
+                            <label for="id_anio">de</label>
+                
+                            <input type="text" id="id_anio" name="anio" class="date-year" value="{{ justificante_form.initial.anio }}" readonly/>
+                        </p>
+                    </label>
+
+                    <p class="p4">
+                        PROFESOR(A) DE CARRERA <br />
+                        PRESENTE.
+                    </p>
+
+                    <p class="p5">
+                        <label for="id_alumno">
+                            Por este medio, informo a Usted que el (la) alumno (a) C.
+                        </label>
+                        {{ justificante_form.alumno }}
+                        <label for="id_grupo">
+                            del grupo
+                        </label>
+                        {{ justificante_form.grupo }}
+                        <label for="id_carrera">
+                            de la carrera de
+                        </label>
+                        {{ justificante_form.carrera }}
+                        en Tecnologías de la Información
+                        <!-- <label for="id_tsu">TSU</label>
+                        {{ justificante_form.nivel }} -->
+                        <label for="id_dias_falta">
+                            solicita permiso para ausentarse el (los) día(s)
+                        </label>
+                        {{ justificante_form.dias_falta }}
+                        <label for="id_mes_falta">
+                            de
+                        </label>
+                        {{ justificante_form.mes }}
+                        <label for="id_motivo">
+                            del año en curso, por motivos
+                        </label>
+                        {{ justificante_form.motivo }}
+                        , causa por la cual pido a Usted(es) de la manera más atenta le de las
+                        facilidades para recuperar los temas y/o actividades realizados.
+                        <br>
+                        Esperando su total comprensión, me es grato quedar de Usted para
+                        cualquier duda o aclaración.
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <div class="back-container2">
+            <form method="post" enctype="multipart/form-data" class="form-inline mt-4">
+                {% csrf_token %}
+                <div class="op-container">
+                    <label for="id_profesores" class="ds-txt">Docentes con inasistencia:</label> <br>
+                    {{ profesores_archivos_form.profesores }}
+                    <label for="id_adjuntar_archivos">
+                        <p class="ea-doc">Evidencia por inasistencia: </p>
+                    </label>
+                    {{ profesores_archivos_form.adjuntar_archivos }}
+                    <button type="button" class="btn-dld">Descargar archivo</button>
+                    <button type="submit" class="btn-send">Envíar</button>                    
+                </div>
+            </form>
+        </div>
+    </div>
+  </body>
+</html>

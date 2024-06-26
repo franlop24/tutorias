@@ -1,0 +1,17 @@
+<!-- templates/profile/update_perfil.html -->
+{% extends 'base.html' %}
+
+{% block title %}Actualizar Perfil{% endblock %}
+
+{% block content %}
+  <h2>Actualizar Perfil</h2>
+  
+  <form method="POST">
+    {% csrf_token %}
+    
+    <h3>Datos del Perfil</h3>
+    {{ profile_form.as_p }}
+    
+    <button type="submit">Guardar Cambios</button>
+  </form>
+{% endblock %}

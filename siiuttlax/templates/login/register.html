@@ -1,0 +1,12 @@
+<!-- templates/profile/register.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Registro de Estudiante</h2>
+  <h3>Nota: si aun no sabes tu matricula deja vacio el campo</h3>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registrarse</button>
+  </form>
+{% endblock %}

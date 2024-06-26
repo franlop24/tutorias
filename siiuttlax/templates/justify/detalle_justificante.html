@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Justificante</title>
+</head>
+<body>
+    <h1>Detalle del Justificante</h1>
+    <p>Alumno: {{ justificante.alumno.username }}</p>
+    <p>Fecha de la falta: {{ justificante.fecha_falta }}</p>
+    <p>Motivo: {{ justificante.motivo }}</p>
+    {% if justificante.adjuntar_archivos %}
+        <p>Evidencia: <a href="{{ justificante.adjuntar_archivos.url }}" target="_blank">Ver Evidencia</a></p>
+    {% else %}
+        <p>No hay archivo adjunto.</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="aceptar">Aceptar</button>
+        <button type="submit" name="rechazar">Rechazar</button>
+    </form>
+</body>
+</html>

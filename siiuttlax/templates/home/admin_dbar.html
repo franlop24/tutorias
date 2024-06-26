@@ -1,0 +1,19 @@
+<!-- admin_dashboard.html -->
+
+{% extends 'base.html' %}
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block content %}
+    <h2>Bienvenid@ Admin {{ user.username }}</h2>
+    
+    <h3>Datos del Usuario:</h3>
+    <p>Nombre de usuario: {{ user.username }}</p>
+    <p>Nombre: {{ user.first_name }}</p>
+
+    <h3>Acciones</h3>
+    <a href="{% url 'create_professor' %}">Administrar Profesor</a>
+    <a href="{% url 'manage_groups' %}">Administrar Grupo</a>
+    <a href="{% url 'Login' %}">Cerrar Sesión</a>
+    
+{% endblock %}
+ 

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Perfil</title>
+</head>
+<body>
+    <h2>Actualizar Perfil</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <button type="submit">Guardar Cambios</button>
+    </form>
+</body>
+</html>
