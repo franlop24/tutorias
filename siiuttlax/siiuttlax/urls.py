@@ -15,10 +15,10 @@ urlpatterns = [
     path('', include('apps.interview.urls')),
     path('', include('apps.group.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+#   path('seguimiento/',include('apps.seguimiento.urls')),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('solicitar/', alumno_view, name='ruta_alumno'),
     path('revisar/', tutor_view, name='ruta_tutor'),
     path('revisar/justificante/<int:justificante_id>/', revisar_justificante_view, name='ruta_para_revisar_justificante'),
-
     path('seguimiento/', views.index, name='index')
 ]

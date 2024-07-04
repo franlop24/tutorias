@@ -50,22 +50,24 @@ def student_dashboard(request):
     # Verificar si el usuario autenticado es un estudiante
     try:
         student_profile = request.user.student
+        user_type = 'estudiante'
     except Student.DoesNotExist:
         # Si no es estudiante, redirige a la página de inicio
-         return render(request, 'profile/error_404.html', {'message': 'No se encontró el perfil de estudiante asociado'})
+        return render(request, 'profile/error_404.html', {'message': 'No se encontró el perfil de estudiante asociado'})
     
-    return render(request, 'home/student_dashboard.html', {'user': request.user, 'student': student_profile})
+    return render(request, 'home/student_dashboard.html', {'user': request.user, 'student': student_profile, 'user_type': user_type})
 
 @login_required
 def professor_dashboard(request):
     # Verificar si el usuario autenticado es un profesor
     try:
         professor_profile = request.user.professor
+        user_type = 'profesor'
     except Professor.DoesNotExist:
         # Si no es profesor, redirige a la página de inicio
         return render(request, 'profile/error_404.html', {'message': 'No se encontró el perfil asociado al modulo'})
     
-    return render(request, 'home/professor_dashboard.html', {'user': request.user, 'professor': professor_profile})
+    return render(request, 'home/professor_dashboard.html', {'user': request.user, 'professor': professor_profile, 'user_type': user_type})
 
 def custom_404_view(request, exception):
     return render(request, 'profile/error_404.html', {'message': 'No se encontró el perfil asociado al modulo'})
