@@ -5,8 +5,7 @@ from django.conf.urls.static import static
 
 # Importaciones de las vistas personalizadas
 from apps.justify.views import CustomLoginView, alumno_view, tutor_view, revisar_justificante_view
-
-
+from apps.seguimiento import views  # Asegúrate de que la ruta sea correcta
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -20,4 +19,6 @@ urlpatterns = [
     path('solicitar/', alumno_view, name='ruta_alumno'),
     path('revisar/', tutor_view, name='ruta_tutor'),
     path('revisar/justificante/<int:justificante_id>/', revisar_justificante_view, name='ruta_para_revisar_justificante'),
+
+    path('seguimiento/', views.index, name='index')
 ]

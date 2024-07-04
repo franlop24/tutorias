@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # local Apps
+    'apps.seguimiento.apps.SeguimientoConfig',
     'apps.justify.apps.JustifyConfig',
     'apps.career.apps.CareerConfig',
     'apps.home.apps.HomeConfig',
@@ -133,9 +134,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
+# settings.py
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static'] # Comment in production
+...
+
+# Define the directories where Django will look for static files
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+ # Comment in production
 #STATIC_ROOT = BASE_DIR / 'static' # Uncomment in production
 
 # Default primary key field type
