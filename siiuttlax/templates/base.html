@@ -24,10 +24,82 @@
 
         <ul class="navigation">
             <li>
-                <a href="home.html">
+                <a href="{% url 'home:home' %}">
                     Inicio
                 </a>
             </li>
+            <li>
+                <a href="#">
+                    UTT
+                    <i class='bx bxs-chevron-down js-arrow'></i>
+                </a>
+                <div class="subnavigation__wrapper">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Página UTT
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                EVAUTT
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                SAIIUTT
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    Tutoría
+                    <i class='bx bxs-chevron-down js-arrow'></i>
+                </a>
+                <div class="subnavigation__wrapper">
+                    <ul>
+                        <li>
+                            
+                            <a href="">
+                                Justificantes Alumno
+                            </a>
+                        </li>
+                        <li>
+                            <a href="justifying_teacher.html">
+                                Justificantes Tutores
+                            </a>
+                        </li>
+                        <li>
+                            <a href="justifying_principal.html">
+                                Justificantes Director
+                            </a>
+                        </li>
+                        <li>
+                            <a href="individual_monitoring.html">
+                                Seguimiento Individual
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'index' %}">
+                                Seguimiento Tutorial
+                            </a>
+                        </li>
+                        <li>
+                            <a href="survey_leave.html">
+                                Encuesta Causa de Baja
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    Servicios
+                </a>
+            </li>
+            <button>Iniciar sesión</button>
             
             {% if user.is_authenticated %}
                 {% if user_type == 'profesor' %}

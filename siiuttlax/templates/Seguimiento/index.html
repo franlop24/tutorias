@@ -28,11 +28,23 @@
 
     
 <body>
-    <div class="encabezado">
-        <p>Universidad Tecnológica de Tlaxcala</p>
-    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
 
-    <table class="tabla">
+    <table>
         <tr>
             <th>Cuatrimestre</th>
             <th>Periodo</th>
@@ -48,142 +60,139 @@
 
 
     <!-- Tabla de Carreras -->
-    <table class="tabla">
+    <table>
         <tr>
             <th>Abreviatura</th>
             <th>Nombre</th>
             <th>Nivel</th>
             
         </tr>
-        
+        {% for career in careers %}
         <tr>
-            <td>TIADSM</td>
-            <td>Tecnologías de la Información Área Desarrollo de Software Multiplataforma</td>
-            <td>TSU</td>
-        </tr>
-       
-    </table>
-
-
-
-    <table class="tabla">
-        <tr>
-            <th>Matricula</th>
-            <th>Nombre</th>
-            <th>Genero</th>
-            <th>Grado</th>
-            <th>Grupo</th>
-        </tr>
-        {% for student in students %}
-        <tr>
-            <td>{{ student.enrollment }}</td>
-            <td>{{ student.first_name }}</td>
-            <td>H</td>
-            <td>6</td>
-            <td>A</td>    
+            <td>{{ career.short_name }}</td>
+            <td>{{ Career.name }}</td>
+            <td>{{ Career.level }}</td>
         </tr>
         {% endfor %}
     </table>
 
-
-    <table class="tabla">
+    <table>
         <tr>
-            <th>Discapacidad(V) Visual, (A) Auditiva,
-                (I) Intelectual, (M) Motora</th>
+            <th>Tutor</th>
+            <th>Grado</th>
+            <th>Grupo</th>
+            <th>No. Sesiones Grupales</th>
+            <th>No. Sesiones Individuales</th>
         </tr>
+        {% for professor in professors %}
         <tr>
-            <td>V</td>
-        </tr>
-    </table>
-
-    <table class="tabla">
-        <tr>
-            <th>Sesiones Grupales</th>
-            <th>Sesiones Individuales</th>
-        </tr>
-        <tr>
+            <td>{{ professor.full_name }}</td>
+            <td>6</td>
+            <td>A</td>
             <td>8</td>
-            <td>1</td>    
+            <td>8</td>
         </tr>
+        {% endfor %}
     </table>
 
-    
-    <table class="tabla">
+    <table BORDER CELLPADDING=10 CELLSPACING=0>
         <tr>
-            <th>Inasistencias</th>
-            <th>Incumplimiento de entregables</th>
-            <th>Poco Interes en asignaturas con problemas</th>
-            <th>Emocionales</th>
-            <th>Carta compromiso</th>
-            <th>Problemas emocionales</th>
-            <th>Bajo Ingreso</th>
-            <th>Trabaja</th>
-            <th>Padre o Madre de familias</th>
-            
+            <th colspan="9">
+            </th>
+            <th colspan="20">
+                <center>Materias reprobadas</center>
+            </th>
+            <th colspan="3">Factores por los que el alumno es considerado como vulnerable</th>
+
         </tr>
         <tr>
-            <td>{{ student.inasistencias }}</td>
-            <td>{{ student.incumplimiento_entregables }}</td>
-            <td>{{ student.poco_interes_asignaturas }}</td>
-            <td>{{ student.emocionales }}</td>
-            <td>{{ student.carta_compromiso }}</td>
-            <td>{{ student.problemas_emocionales }}</td>
-            <td>{{ student.bajo_ingreso }}</td>
-            <td>{{ student.trabaja }}</td>
-            <td>{{ student.padre_madre_familia }}</td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th colspan="4">ingles</th>
+            <th colspan="4">Español</th>
+            <th colspan="4">Base de datos</th>
+            <th colspan="4">Aplicaciones web</th>
         </tr>
+
+        <tr>
+            <th>
+                No. Alumno
+            </th>
+            <th>Matricula</th>
+            <th>Nombre</th>
+            <th>Sexo</th>
+            <th>Grado</th>
+            <th>Grupo</th>
+            <th>Discapacidad, (V) Visual, (A) Auditiva,
+                (I) Intelectual, (M) Motora</th>
+            <th>
+                No. de materias acreditas en remedial en cuatrimestre anterior
+            </th>
+            <th>
+                Numero de materias reprobadas
+            </th>
+
+            <th>p1</th>
+            <th>p2</th>
+            <th>p3</th>
+            <th>p4</th>
+            <th>p1</th>
+            <th>p2</th>
+            <th>p3</th>
+            <th>p4</th>
+            <th>p1</th>
+            <th>p2</th>
+            <th>p3</th>
+            <th>p4</th>
+            <th>p1</th>
+            <th>p2</th>
+            <th>p3</th>
+            <th>p4</th>
+        </tr>
+
+        {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.enrollment }}</td>
+            <td>{{ student.full_name }}</td>
+            <td>{{ student.profile.sexo }}</td>
+            <td>6</td>
+            <td>A</td>
+            <td>{{ student.interview.tipo_discapacidad }}</td>
+            <td> <input type="text"> </td>
+            <td>
+                0
+            </td>
+            <td> <input type="checkbox" name="" id=""> </td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td><input type="checkbox" name="" id=""></td>
+        </tr>
+        {% endfor %}
+
 
     </table>
 
-       <!-- <table class="tabla">
-            <tr>
-                
-            </tr>
-            <tr>
-                
-            </tr>
-        </table>
-        
 
-        <table class="tabla">
-            <tr>
-                
-            </tr>
-            <tr>
-            </tr>
-        </table>-->
-
-
-        <table class="tabla">
-            <tr>
-                <th>Academico-Calanilzado</th>
-                <th>Personal-Calanilzado</th>
-                <th>Socioeconomico-Calanilzado</th>
-            </tr>
-            <tr>
-                <td>{{ student.academico }}</td>
-                <td>{{ student.personal }}</td>
-                <td>{{ student.socioeconomico }}</td>
-            </tr>
-
-        </table>
-
-        <table class="tabla">
-            <tr>
-                <th>Academico-Retenido</th>
-                <th>Personal-Retenido</th>
-                <th>Socioeconomico-Retenido</th>
-            </tr>
-            <tr>
-                <td>{{ student.academico }}</td>
-                <td>{{ student.personal }}</td>
-                <td>{{ student.socioeconomico }}</td>
-            </tr>
-
-        </table>
-                
-    
-    
 </body>
 </html>
 {% endblock %}
