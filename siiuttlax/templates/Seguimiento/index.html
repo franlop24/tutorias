@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
     
-    <title>Seguimiento Tutorial</title>
+    <title>{% block title %}Seguimiento{% endblock %}</title>
     
 </head>
 
@@ -168,7 +168,7 @@
             <td>{{ student.interview.tipo_discapacidad }}</td>
             <td> <input type="text"> </td>
             <td>
-                0
+               
             </td>
             <td> <input type="checkbox" name="" id=""> </td>
             <td><input type="checkbox" name="" id=""></td>
