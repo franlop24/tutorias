@@ -1,0 +1,55 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Estilo del contenedor principal del formulario */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es extenso */
+}
+
+/* Estilo para los encabezados del formulario */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilo para los campos del formulario */
+form p {
+    margin: 10px 0;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #000000; /* Color de fondo  */
+    color: white; /* Color del texto en blanco */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #000000; /* Color oscuro al pasar el cursor */
+}
