@@ -1,7 +1,7 @@
 # forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Student
+from .models import Student, Professor, Admin
 
 class StudentRegistrationForm(UserCreationForm):
     enrollment = forms.CharField(required=False, max_length=12, label='Matrícula')
@@ -12,9 +12,6 @@ class StudentRegistrationForm(UserCreationForm):
         model = Student
         fields = ['username', 'first_name', 'last_name_father', 'last_name_mother', 'email', 'enrollment', 'password1', 'password2']
 
-
-from django import forms
-from .models import Professor
 
 class ProfessorForm(forms.ModelForm):
     last_name_father = forms.CharField(max_length=30, label='Apellido Paterno')
@@ -27,9 +24,6 @@ class ProfessorForm(forms.ModelForm):
             'password': forms.PasswordInput(),
         }
 
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from .models import Admin
 
 class AdminForm(UserCreationForm):
     last_name_father = forms.CharField(max_length=30, label='Apellido Paterno')
@@ -38,8 +32,3 @@ class AdminForm(UserCreationForm):
     class Meta:
         model = Admin
         fields = ['username', 'first_name', 'last_name_father', 'last_name_mother', 'email', 'password1', 'password2']
-
-
-
-
-

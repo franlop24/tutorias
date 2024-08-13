@@ -23,7 +23,7 @@
         </div>
 
         <ul class="navigation">
-            <li><a href="{% url 'home' %}">Inicio</a></li>
+            <li><a href="{% url 'home:home' %}">Inicio</a></li>
             <li>
                 <a href="#">
                     UTT
@@ -49,76 +49,22 @@
                     </ul>
                 </div>
             </li>
-            <li>
-                <a href="#">
-                    Tutoría
-                    <i class='bx bxs-chevron-down js-arrow'></i>
-                </a>
-                <div class="subnavigation__wrapper">
-                    <ul>
-                        <li>
-                            <a href="justifying_student.html">
-                                Justificantes Alumno
-                            </a>
-                        </li>
-                        <li>
-                            <a href="justifying_teacher.html">
-                                Justificantes Tutores
-                            </a>
-                        </li>
-                        <li>
-                            <a href="justifying_principal.html">
-                                Justificantes Director
-                            </a>
-                        </li>
-                        <li>
-                            <a href="individual_monitoring.html">
-                                Seguimiento Individual
-                            </a>
-                        </li>
-                        <li>
-                            <a href="survey_leave.html">
-                                Encuesta Causa de Baja
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Test Orientacion Vocacional
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'reporte_tutoria:reporte_tutorias' %}">
-                                Reportes de Tutoria
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'consultas_por_periodo' periodo_id=1 %}">
-                                Analisis de Cumplimiento de Tutoria
-                            </a>
-                        </li>
-                        {% if user.is_authenticated %}
-                            {% if user_type == 'profesor' %}
-                                <li><a href="{% url 'update_profile' %}">Actualizar Usuario</a></li>
-                                <li><a href="{% url 'update_perfil' %}">Actualizar Perfil</a></li>
-                                <li><a href="{% url 'students_list' %}">Lista de estudiantes</a></li>
-                            {% elif user_type == 'estudiante' %}
-                                <li><a href="{% url 'fill_initial_interview' %}">Llenar Entrevista Inicial</a></li>
-                                <li><a href="{% url 'update_profile' %}">Actualizar Usuario</a></li>
-                                <li><a href="{% url 'update_perfil' %}">Actualizar Perfil</a></li>
-                            {% elif user_type == 'administrador' %}
-                                <li><a href="{% url 'create_professor' %}">Administrar Profesor</a></li>
-                                <li><a href="{% url 'manage_groups' %}">Administrar Grupo</a></li>
-                            {% endif %}
-                        {% endif %}
-                    </ul>
-                </div>
-            </li>
+            {% if user.is_authenticated %}
+            {% if user_type == 'profesor' %}
+                    {% include 'shared/menu_professor.html' %}
+                {% elif user_type == 'estudiante' %}
+                    {% include 'shared/menu_student.html' %}
+                {% elif user_type == 'administrador' %}
+                    {% include 'shared/menu_admin.html' %}
+                {% endif %}
+            {% endif %}
             <li>
                 <a href="#">
                     Servicios
                 </a>
             </li>
             {% if user.is_authenticated %}
+
                 <li>
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}

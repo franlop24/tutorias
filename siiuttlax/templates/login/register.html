@@ -1,6 +1,8 @@
 <!-- templates/profile/register.html -->
 {% extends "base.html" %}
 
+{% block title %}Registro{% endblock  %}  
+
 {% block content %}
   <h2>Registro de Estudiante</h2>
   <h3>Nota: si aun no sabes tu matricula deja vacio el campo</h3>
@@ -9,4 +11,5 @@
     {{ form.as_p }}
     <button type="submit">Registrarse</button>
   </form>
+  Si ya tienes tu cuenta puedes acceder <a href="{% url 'login' %}">aquí</a>
 {% endblock %}
