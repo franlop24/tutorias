@@ -46,6 +46,7 @@ def students_list(request):
     if selected_group:
         interviews = InitialInterview.objects.filter(grupo_escolar=selected_group)
         students = [interview.student for interview in interviews if interview.student]
+        
 
     return render(request, 'interview/students_list.html', {
         'groups': groups,
@@ -60,6 +61,17 @@ def reactivate_interview(request, student_id):
     interview.save()
     messages.success(request, 'La entrevista inicial ha sido reactivada.')
     return redirect('students_list')
+
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from apps.interview.models import InitialInterview
+
+@login_required
+def view_interview(request, student_id):
+    interview = get_object_or_404(InitialInterview, student__id=student_id)
+    return render(request, 'interview/view_interview.html', {
+        'interview': interview
+    })
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect

@@ -161,9 +161,7 @@ def update_perfil(request):
     return render(request, 'profile/update_perfil.html', {'profile_form': profile_form})
 
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
 
-@login_required
 def home(request):
     user = request.user
     if hasattr(user, 'student'):
@@ -173,7 +171,7 @@ def home(request):
     elif hasattr(user, 'admin'):
         return redirect('admin_dashboard')
     else:
-        return redirect('pagina_inicial')  # Redirigir a la página inicial si no tiene un perfil específico
+        return redirect('/')  # Redirigir a la página inicial si no tiene un perfil específico
 
 
 

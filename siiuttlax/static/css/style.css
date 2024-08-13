@@ -272,7 +272,7 @@ button:hover {
 }
 
 .form-spacing {
-    height: 10000px;
+    height: 100px;
 }
 
 @media (max-width: 600px) {
@@ -341,7 +341,7 @@ button:hover {
 }
 
 .form-spacing-perfil {
-    height: 600px;
+    height: 150px;
 }
 
 /* Estilos perfil estudiante */
@@ -434,3 +434,22 @@ button:hover {
     background-color: #00e68a; /* Color de fondo en hover */
     color: black; /* Color del texto en hover */
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
