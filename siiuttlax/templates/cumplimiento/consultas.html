@@ -51,12 +51,11 @@
                                 {% if grupo.Actividades %}
                                     {% for actividad in grupo.Actividades %}
                                         <li>
-                                            {{ actividad.nombre_actividad }}
+                                            <strong>{{ actividad.nombre_actividad }}</strong>
                                             {% if actividad.evidencia_lista_asistencia %}
                                                 <br><a href="{{ actividad.evidencia_lista_asistencia }}" target="_blank">Evidencia Lista de Asistencia</a>
-                                            {% endif %}
-                                            {% if actividad.evidencia_canalizacion_alumno %}
-                                                <br><a href="{{ actividad.evidencia_canalizacion_alumno }}" target="_blank">Evidencia Canalización de Alumno</a>
+                                            {% else %}
+                                                <br>Sin lista de asistencia
                                             {% endif %}
                                         </li>
                                     {% endfor %}
@@ -64,6 +63,20 @@
                                     <li>No hay reportes existentes.</li>
                                 {% endif %}
                             </ul>
+                            <!-- Sección de Canalización -->
+                            <div class="canalizacion-container">
+                                <h3>Canalización:</h3>
+                                {% if grupo.ReporteCanalizacion %}
+                                    <p><a href="{{ grupo.ReporteCanalizacion }}" target="_blank">Enlace a Canalización</a></p>
+                                {% else %}
+                                    <p>No hay ninguna canalización.</p>
+                                {% endif %}
+                            </div>
+
+                            <!-- Sección de Seguimiento (espacio reservado para completar más tarde) -->
+                            <div class="seguimiento-container">
+                                <h3>Seguimiento:</h3>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}

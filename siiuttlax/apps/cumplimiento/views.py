@@ -7,13 +7,24 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def index(request):
     periods = Period.objects.all()
-    current_period = None  
+    current_period = None
     grupos_data = []
     
     if 'periodo' in request.GET:
         periodo_id = request.GET.get('periodo')
         current_period = get_object_or_404(Period, id=periodo_id)
         grupos = Group.objects.filter(period=current_period)
+        # Load groups' data
+        for grupo in grupos:
+            actividades = ReporteTutoria.objects.filter(grupo=grupo)
+            grupos_data.append({
+                'Cuatrimestre': grupo.semester.semester_name,
+                'Grupo': grupo.group,
+                'Tutor': grupo.tutor.full_name if grupo.tutor else 'No asignado',
+                'Periodo': str(grupo.period),
+                'Carrera': grupo.career.short_name if grupo.career else 'No asignada',
+                'Actividades': actividades,
+            })
     
     return render(request, 'cumplimiento/consultas.html', {'periods': periods, 'current_period': current_period, 'grupos': grupos_data})
 
@@ -21,21 +32,24 @@ def index(request):
 def consultas_por_periodo(request, periodo_id):
     period = get_object_or_404(Period, id=periodo_id)
     grupos = Group.objects.filter(period=period)
+    
     period_months = {
         'Enero - Abril': [1, 2, 3, 4],
         'Mayo - Agosto': [5, 6, 7, 8],
         'Septiembre - Diciembre': [9, 10, 11, 12]
     }
     months_available = period_months.get(period.period, [])
-
+    
     mes = request.GET.get('mes', None)
     
     grupos_data = []
     num_actividades_esperadas = 4
     
     for grupo in grupos:
+        # Obtén todas las actividades del grupo
         actividades = ReporteTutoria.objects.filter(grupo=grupo)
-
+        
+        # Filtra las actividades por el mes seleccionado si está definido
         if mes and int(mes) in months_available:
             actividades = actividades.filter(fecha_tutoria__month=int(mes))
         
@@ -48,10 +62,9 @@ def consultas_por_periodo(request, periodo_id):
                 'evidencia_canalizacion_alumno': actividad.evidencia_canalizacion_alumno.url if actividad.evidencia_canalizacion_alumno else None
             })
         
+        # Completa con actividades no reportadas si hay menos de num_actividades_esperadas
         actividades_completas = actividades_data + [{'nombre_actividad': 'No reportado', 'evidencia_lista_asistencia': None, 'evidencia_canalizacion_alumno': None}] * (num_actividades_esperadas - len(actividades_data))
         
-        actividades_completas = actividades_data + [{'nombre_actividad': 'No reportado', 'evidencia_lista_asistencia': None, 'evidencia_canalizacion_alumno': None}] * (num_actividades_esperadas - len(actividades_data))
-
         if not mes or actividades_data:
             grupos_data.append({
                 'Cuatrimestre': grupo.semester.semester_name,
@@ -59,7 +72,8 @@ def consultas_por_periodo(request, periodo_id):
                 'Tutor': grupo.tutor.full_name if grupo.tutor else 'No asignado',
                 'Periodo': str(grupo.period),
                 'Carrera': grupo.career.short_name if grupo.career else 'No asignada',
-                'Actividades': actividades_completas
+                'Actividades': actividades_completas,
+                'ReporteCanalizacion': actividades.last().evidencia_canalizacion_alumno.url if actividades.exists() and actividades.last().evidencia_canalizacion_alumno else None,
             })
 
     periods = Period.objects.all()
