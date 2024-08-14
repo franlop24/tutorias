@@ -12,7 +12,8 @@ def fill_initial_interview(request):
     if interview and not interview.active:
         # Permitir la visualización de la entrevista completada
         form = InitialInterviewForm(instance=interview)
-        form.fields['interview_date'].widget.attrs['readonly'] = True  # Hacer campos de solo lectura
+        for field in form.fields:
+            form.fields[field].widget.attrs['readonly'] = True  # Hacer campos de solo lectura
         return render(request, 'interview/initial_interview_form.html', {
             'form': form,
             'interview_exists': True,
@@ -26,6 +27,7 @@ def fill_initial_interview(request):
             interview.student = student
             interview.active = False  # Desactivar la entrevista una vez completada
             interview.save()
+            messages.success(request, 'Entrevista inicial guardada correctamente.')
             return redirect('student_dashboard')
     else:
         form = InitialInterviewForm(instance=interview)
