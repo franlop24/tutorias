@@ -13,13 +13,25 @@
         <div class="periodo-select">
             <form method="get" action="{% url 'consultas_por_periodo' current_period.id %}">
                 <select name="periodo" onchange="if(this.value) { window.location.href='{% url 'consultas_por_periodo' 0 %}'.replace('0', this.value); }">
-                    <option value="" {% if not current_period or current_period.id == 0 %}selected{% endif %}>Seleccione un periodo:</option>
+                    <option value="" {% if not current_period or current_period.id == 0 %}selected{% endif %}>
+                        Seleccione un periodo:
+                    </option>
                     {% for period in periods %}
                         <option value="{{ period.id }}" {% if period.id == current_period.id %}selected{% endif %}>
                             {{ period.period }}: {{ period.year }}
                         </option>
                     {% endfor %}
                 </select>
+                
+                <select name="carrera" onchange="this.form.submit()">
+                    <option value="">Seleccione una carrera:</option>
+                    {% for career in careers %}
+                        <option value="{{ career.id }}" {% if career == selected_career %}selected{% endif %}>
+                            {{ career.short_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
                 <select name="mes" onchange="this.form.submit()">
                     <option value="">Seleccione un mes:</option>
                     {% for month in months_available %}
