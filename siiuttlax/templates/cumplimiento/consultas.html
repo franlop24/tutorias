@@ -8,40 +8,44 @@
 {% endblock %}
 
 {% block content %}
-<center><h1>Análisis de Cumplimiento de Tutoría</h1></center>
 <div class="content-container">
     <div class="scroll-container">
         <div class="periodo-select">
             <form method="get" action="{% url 'consultas_por_periodo' current_period.id %}">
                 <select name="periodo" onchange="if(this.value) { window.location.href='{% url 'consultas_por_periodo' 0 %}'.replace('0', this.value); }">
-                    <option value="">Selecciona un periodo</option>
+                    <option value="" {% if not current_period or current_period.id == 0 %}selected{% endif %}>
+                        Seleccione un periodo:
+                    </option>
                     {% for period in periods %}
                         <option value="{{ period.id }}" {% if period.id == current_period.id %}selected{% endif %}>
                             {{ period.period }}: {{ period.year }}
                         </option>
                     {% endfor %}
                 </select>
+                
+                <select name="carrera" onchange="this.form.submit()">
+                    <option value="">Seleccione una carrera:</option>
+                    {% for career in careers %}
+                        <option value="{{ career.id }}" {% if career == selected_career %}selected{% endif %}>
+                            {{ career.short_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
                 <select name="mes" onchange="this.form.submit()">
                     <option value="">Seleccione un mes:</option>
-                    <option value="1" {% if selected_mes == '1' %}selected{% endif %}>Enero</option>
-                    <option value="2" {% if selected_mes == '2' %}selected{% endif %}>Febrero</option>
-                    <option value="3" {% if selected_mes == '3' %}selected{% endif %}>Marzo</option>
-                    <option value="4" {% if selected_mes == '4' %}selected{% endif %}>Abril</option>
-                    <option value="5" {% if selected_mes == '5' %}selected{% endif %}>Mayo</option>
-                    <option value="6" {% if selected_mes == '6' %}selected{% endif %}>Junio</option>
-                    <option value="7" {% if selected_mes == '7' %}selected{% endif %}>Julio</option>
-                    <option value="8" {% if selected_mes == '8' %}selected{% endif %}>Agosto</option>
-                    <option value="9" {% if selected_mes == '9' %}selected{% endif %}>Septiembre</option>
-                    <option value="10" {% if selected_mes == '10' %}selected{% endif %}>Octubre</option>
-                    <option value="11" {% if selected_mes == '11' %}selected{% endif %}>Noviembre</option>
-                    <option value="12" {% if selected_mes == '12' %}selected{% endif %}>Diciembre</option>
+                    {% for month in months_available %}
+                        <option value="{{ month }}" {% if selected_mes == month|stringformat:"s" %}selected{% endif %}>
+                            {% if month == 1 %}Enero{% elif month == 2 %}Febrero{% elif month == 3 %}Marzo{% elif month == 4 %}Abril{% elif month == 5 %}Mayo{% elif month == 6 %}Junio{% elif month == 7 %}Julio{% elif month == 8 %}Agosto{% elif month == 9 %}Septiembre{% elif month == 10 %}Octubre{% elif month == 11 %}Noviembre{% elif month == 12 %}Diciembre{% endif %}
+                        </option>
+                    {% endfor %}
                 </select>
             </form>
         </div>
 
         <div class="info-estatica">
-            <p><strong>Director de Carrera:</strong> Jose Manuel</p>
-            <p><strong>Coordinadora de Tutoría:</strong> Gabriela</p>
+            <p><strong>Director de Carrera:</strong> M.S.C Manuel Flores Nava.</p>
+            <p><strong>Coordinadora de Tutoría:</strong> M. en . C Julia Gabriela Nieva Paredes.</p>
         </div>
 
         <div class="grupo-scroll-container">
@@ -56,15 +60,14 @@
                         </div>
                         <div class="actividades-container">
                             <ul class="lista-actividades">
-                                {% if grupo.Actividades.0.evidencia_lista_asistencia or grupo.Actividades.0.evidencia_canalizacion_alumno %}
+                                {% if grupo.Actividades %}
                                     {% for actividad in grupo.Actividades %}
                                         <li>
-                                            {{ actividad.nombre_actividad }}
+                                            <strong>{{ actividad.nombre_actividad }}</strong>
                                             {% if actividad.evidencia_lista_asistencia %}
                                                 <br><a href="{{ actividad.evidencia_lista_asistencia }}" target="_blank">Evidencia Lista de Asistencia</a>
-                                            {% endif %}
-                                            {% if actividad.evidencia_canalizacion_alumno %}
-                                                <br><a href="{{ actividad.evidencia_canalizacion_alumno }}" target="_blank">Evidencia Canalización de Alumno</a>
+                                            {% else %}
+                                                <br>Sin lista de asistencia
                                             {% endif %}
                                         </li>
                                     {% endfor %}
@@ -72,6 +75,18 @@
                                     <li>No hay reportes existentes.</li>
                                 {% endif %}
                             </ul>
+                            <div class="canalizacion-container">
+                                <h3>Canalización:</h3>
+                                {% if grupo.ReporteCanalizacion %}
+                                    <p><a href="{{ grupo.ReporteCanalizacion }}" target="_blank">Enlace a Canalización</a></p>
+                                {% else %}
+                                    <p>No hay ninguna canalización.</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="seguimiento-container">
+                                <h3>Seguimiento:</h3>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -79,5 +94,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
