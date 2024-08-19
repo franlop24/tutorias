@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&family=Comfortaa:wght@300;400;500&family=Didact+Gothic&family=Nova+Square&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <title>Tutorías | {% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{% static 'img/logoUTT.png' %}" alt="Logo"/>
+            <h1>Sistema Integral de Tutorías</h1>
+        </div>
+
+        <ul class="navigation">
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            
+            <li>
+                <a href="#">
+                    UTT
+                    <i class='bx bxs-chevron-down js-arrow'></i>
+                </a>
+                <div class="subnavigation__wrapper">
+                    <ul>
+                        <li><a href="#">Página UTT</a></li>
+                        <li><a href="#">EVAUTT</a></li>
+                        <li><a href="#">SAIIUTT</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    Tutoría
+                    <i class='bx bxs-chevron-down js-arrow'></i>
+                </a>
+                <div class="subnavigation__wrapper">
+                    <ul>
+                        <li><a href="{% url 'update_profile' %}">Actualizar Usuario</a></li>
+                        <li><a href="{% url 'update_perfil' %}">Actualizar Perfil</a></li>
+                        <li><a href="{% url 'students_list' %}">Lista de estudiantes</a></li>
+                        <li><a href="{% url 'reporte_tutoria:reporte_tutorias' %}">Reportes de Tutoria</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            {% if user.is_authenticated %}
+                <li>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Cerrar sesión</button>
+                    </form>
+                </li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="btn">Iniciar sesión</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="hoja">
+        <header>
+            <img src="{% static 'img/Encabezado.jpg' %}" alt="Encabezado">
+        </header>
+        
+        <div class="encabezado">
+            <h1>REPORTE DE TUTORIA</h1>
+            <br>
+
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <label for="fecha">Fecha de Tutoria:</label>
+                    <input type="date" id="fecha" name="fecha" value="{{ fecha_tutoria|date:"Y-m-d" }}" title="Fecha de Tutoria">
+                </div>
+
+                <div>
+                    <label for="carrera">Carrera:</label>
+                    <select id="carrera" disabled>
+                        <option value="">Seleccione una carrera</option>
+                        {% for carrera in reporte.carreras %}
+                            <option value="{{ carrera.id }}" {% if carrera.id == default_carrera %} selected {% endif %}>{{ carrera.short_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="hidden" name="carrera" value="{{ default_carrera }}">
+                </div>
+                <br>
+                <div>
+                    <label for="semestre">Semestre:</label>
+                    <select id="semestre" disabled>
+                        <option value="">Selecciona el semestre</option>
+                        {% for cuatrimestre in reporte.semestres %}
+                            <option value="{{ cuatrimestre.id }}" {% if cuatrimestre.id == default_semestre %} selected {% endif %}>{{ cuatrimestre.semester }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="hidden" name="semestre" value="{{ default_semestre }}">
+                </div>
+                <br>
+                <div>
+                    <label for="grupo">Grupo:</label>
+                    <select id="grupo" disabled>
+                        <option value="">Selecciona el grupo</option>
+                        {% for grupo in reporte.grupos %}
+                            <option value="{{ grupo.id }}" {% if grupo.id == default_grupo %} selected {% endif %}>{{ grupo.group }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="hidden" name="grupo" value="{{ default_grupo }}">
+                </div>
+                <br>
+                <div>
+                    <label for="nombre_actividad">Nombre de la Actividad:</label>
+                    <input type="text" id="nombre_actividad" name="nombre_actividad" placeholder="Nombre de la actividad" title="Nombre de la Actividad">
+                </div>
+
+                <div>
+                    <label for="objetivo_actividad">Objetivo de la Actividad:</label>
+                    <textarea id="objetivo_actividad" name="objetivo_actividad" rows="4" placeholder="Objetivo de la actividad" title="Objetivo de la Actividad"></textarea>
+                </div>
+
+                <div>
+                    <label for="descripcion_actividad">Descripción de la Actividad:</label>
+                    <textarea id="descripcion_actividad" name="descripcion_actividad" rows="6" placeholder="Descripción de la actividad" title="Descripción de la Actividad"></textarea>
+                </div>
+
+                <div>
+                    <label for="evidencia1" class="file-label">Evidencia de Imagen/Video:</label>
+                    <input type="file" id="evidencia1" name="evidencia1" accept=".png, .jpg, .jpeg, .mp4" title="Selecciona evidencia" data-description="Sube una imagen o un video.">
+            
+                    <label for="evidencia2" class="file-label">Evidencia en PDF de la lista de asistencia :</label>
+                    <input type="file" id="evidencia2" name="evidencia2" accept=".pdf" title="Selecciona evidencia adicional" data-description="Sube un archivo PDF.">
+            
+                    <label for="evidencia3" class="file-label">Evidencia de Audio de la lista de asistencia:</label>
+                    <input type="file" id="evidencia3" name="evidencia3" accept=".mp3" title="Selecciona evidencia adicional" data-description="Sube un archivo de audio en formato MP3.">
+            
+                    <label for="evidencia4" class="file-label">Evidencia en PDF del alumno canalizado:</label>
+                    <input type="file" id="evidencia4" name="evidencia4" accept=".pdf" title="Selecciona evidencia adicional" data-description="Sube otro archivo PDF de canalizacion de alumno.">
+                </div>
+
+                <br>
+                <button type="submit" title="Enviar">Enviar</button>
+                <ul>
+                    <li><a href="{% url 'home' %}">Inicio</a></li>
+                </ul>
+                </form> 
+                <br>    
+            </form>
+        </div>
+        <br>
+
+        <footer>
+            <img src="{% static 'img/Footer.jpg' %}" alt="Pie de página">
+        </footer>
+    </div>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

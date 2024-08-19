@@ -46,6 +46,7 @@ class InitialInterview(models.Model):
     ]
 
     student = models.OneToOneField(Student, blank=True, null=True, on_delete=models.CASCADE, related_name='interview')
+    active = models.BooleanField(default=True)
     interview_date = models.DateField(blank=True, null=True, verbose_name='Fecha de la entrevista')
     
     # Nuevos campos

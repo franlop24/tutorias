@@ -1,0 +1,62 @@
+<li>
+    <a href="#">
+        Tutoría
+        <i class='bx bxs-chevron-down js-arrow'></i>
+    </a>
+    <div class="subnavigation__wrapper">
+        <ul>
+            <li>
+                <a href="justifying_student.html">
+                    Justificantes Alumno
+                </a>
+            </li>
+            <li>
+                <a href="justifying_teacher.html">
+                    Justificantes Tutores
+                </a>
+            </li>
+            <li>
+                <a href="justifying_principal.html">
+                    Justificantes Director
+                </a>
+            </li>
+            <li>
+                <a href="individual_monitoring.html">
+                    Seguimiento Individual
+                </a>
+            </li>
+            <li>
+                <a href="survey_leave.html">
+                    Encuesta Causa de Baja
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Test Orientacion Vocacional
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'reporte_tutoria:reporte_tutorias' %}">
+                    Reportes de Tutoria
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'consultas_por_periodo' periodo_id=1%}">
+                    Analisis de Cumplimiento
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+<li>
+    <a href="#">
+        Perfil
+        <i class='bx bxs-chevron-down js-arrow'></i>
+    </a>
+    <div class="subnavigation__wrapper">
+        <ul>
+        <li><a href="{% url 'create_professor' %}">Administrar Profesor</a></li>
+        <li><a href="{% url 'manage_groups' %}">Administrar Grupo</a></li>
+    </ul>
+    </div>
+</li>

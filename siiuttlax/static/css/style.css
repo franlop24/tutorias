@@ -1,22 +1,80 @@
+/* Reset de márgenes y paddings */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Estilos generales */
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: rgb(240, 240, 240);
+    min-height: 100vh;
+    background-color: #f0f0f0;
 }
 
-body::-webkit-scrollbar {
-    display: none;
+/* Estilos para la hoja de reporte */
+.hoja {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
 }
 
+header, footer {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+header img, footer img {
+    width: 100%;
+    max-width: 100%;
+}
+
+.encabezado {
+    margin: 20px 0; /* Espacio entre el contenido y el header/footer */
+}
+
+.encabezado h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 1cm;
+}
+
+.encabezado p {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.encabezado input, .encabezado textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.encabezado input[type="date"] {
+    width: auto;
+}
+
+.encabezado button, .encabezado input[type="file"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+/* Estilos del navbar */
 nav {
     background: white;
     display: flex;
@@ -29,24 +87,24 @@ nav {
     z-index: 1000;
 }
 
-.logo {
+nav .logo {
     display: flex;
     align-items: center;
     margin-right: auto;
 }
 
-img {
+nav img {
     width: auto;
     height: 1.875rem;
 }
 
-h1 {
+nav h1 {
     font-size: 1.4375rem;
     font-weight: 500;
     margin-left: 1.25rem;
 }
 
-.navigation {
+nav .navigation {
     max-width: 40rem;
     width: auto;
     display: flex;
@@ -56,7 +114,7 @@ h1 {
     align-items: center;
 }
 
-.navigation li {
+nav .navigation li {
     position: relative;
     transition: all 0.5s ease;
     flex-grow: 1;
@@ -64,8 +122,8 @@ h1 {
     width: auto;
 }
 
-.navigation a {
-    font-family: "Poppins", sans-serif;
+nav .navigation a {
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 1rem;
     display: flex;
@@ -80,18 +138,17 @@ h1 {
     transition: all 0.7s ease;
 }
 
-.navigation a:hover {
+nav .navigation a:hover {
     background-position: 0;
     color: #19bd66;
 }
 
-
-.navigation>li:hover>a {
+nav .navigation>li:hover>a {
     background-position: 0;
     color: #19bd66;
 }
 
-.subnavigation__wrapper {
+nav .subnavigation__wrapper {
     overflow: hidden;
     max-height: 0;
     position: absolute;
@@ -102,7 +159,7 @@ h1 {
     font-size: 1rem;
 }
 
-.navigation li:hover .subnavigation__wrapper {
+nav .navigation li:hover .subnavigation__wrapper {
     max-height: 50rem;
     top: 4rem;
     display: flex;
@@ -110,15 +167,15 @@ h1 {
     color: #19bd66;
 }
 
-.navigation ul {
-    padding: 0; 
+nav .navigation ul {
+    padding: 0;
 }
 
-.navigation li ul li a {
+nav .navigation li ul li a {
     padding: 0.5rem 1rem;
 }
 
-ul li:hover .js-arrow {
+nav ul li:hover .js-arrow {
     transform: rotate(180deg);
     transition: max-height all 0.5s ease;
 }
@@ -136,7 +193,7 @@ button {
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     border-radius: 0.3125rem;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 button:hover {
@@ -145,24 +202,170 @@ button:hover {
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
 }
 
+/* Tabla de seguimiento */
 table {
     border-collapse: collapse;
     width: 100%;
-  }
-  
-  th, td {
+}
+
+th, td {
     text-align: left;
     padding: 8px;
-  }
-  
-  tr:nth-child(even){background-color: #f2f2f2}
-  
-  th {
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
     background-color: #04AA6D;
     color: white;
-  }
+}
 
-  .container{
+/* Contenedor de la tabla */
+.container {
     padding-top: 50px;
     overflow: scroll;
-  }
+}
+
+/* Estilos para el formulario de entrevista inicial */
+.interview-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.interview-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+}
+
+.interview-form p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Asegura que todos los campos del formulario se alineen bien */
+.interview-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.interview-form input,
+.interview-form select,
+.interview-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.interview-form textarea {
+    resize: vertical;
+    height: 120px; /* Ajustar la altura del área de texto */
+}
+
+.interview-form .btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+.interview-form .btn-submit:hover {
+    background-color: #45a049;
+}
+
+.interview-form .form-group {
+    margin-bottom: 15px;
+}
+
+.form-spacing {
+    height: 100px;
+}
+
+@media (max-width: 600px) {
+    .interview-form {
+        padding: 10px;
+        max-width: 100%;
+    }
+}
+
+/* Estilos del formulario para actualizar perfil */
+.update-profile-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Encabezado del formulario */
+.update-profile-form h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Sección de datos del perfil */
+.update-profile-form h3 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Estilos para los campos del formulario */
+.update-profile-form input, 
+.update-profile-form select, 
+.update-profile-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.update-profile-form textarea {
+    height: 120px;
+    width: 562px;
+}
+
+/* Estilo del campo de edad */
+#ageField {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* Botón de Éxito */
+.update-profile-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Botón de éxito al hacer hover */
+.update-profile-form button:hover {
+    background-color: #0069d9;
+}

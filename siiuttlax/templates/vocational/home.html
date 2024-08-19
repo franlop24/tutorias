@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header>
+    <h1 class="welcome">Bienvenido {{ user.username }}</h1>
+    <!-- <div class="div-btn-logout"> -->
+    <!-- <div class="btns-header">
+        <form action="{% url 'exam:data' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Datos personales" class="btn-userdata">
+        </form>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Cerrar Sesion" class="btn-logout">
+        </form>
+    </div> -->
+</header>
+
+<section>
+    <div class="modulos">
+        <h3>Test Orientacion Vocacional</h3>
+        <a href="{% url 'vocational:test' 1 %}" class="startTest">Iniciar Test</a>
+    </div>
+</section>
+
+
+{% endblock %}

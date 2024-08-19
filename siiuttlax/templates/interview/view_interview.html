@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+
+{% block title %}Ver Entrevista{% endblock %}
+
+{% block content %}
+<h2>Respuestas de la Entrevista</h2>
+
+<p><strong>Nombre del Estudiante:</strong> {{ interview.student.get_full_name }}</p>
+<p><strong>Matrícula:</strong> {{ interview.student.enrollment }}</p>
+
+<h3>Respuestas:</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pregunta</th>
+            <th>Respuesta</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Estado Civil:</td>
+            <td>{{ interview.estado_civil }} {% if interview.estado_civil_otro %} ({{ interview.estado_civil_otro }}) {% endif %}</td>
+        </tr>
+        <tr>
+            <td>Nombre del Tutor:</td>
+            <td>{{ interview.nombre_tutor }}</td>
+        </tr>
+        <tr>
+            <td>Tipo de Religión:</td>
+            <td>{{ interview.tipo_religion }}</td>
+        </tr>
+        <tr>
+            <td>Lugar de Procedencia:</td>
+            <td>{{ interview.lugar_procedencia }}</td>
+        </tr>
+        <tr>
+            <td>¿Con quién vives?:</td>
+            <td>{{ interview.con_quien_vives }}</td>
+        </tr>
+        <tr>
+            <td>¿Trabajas?:</td>
+            <td>{{ interview.trabajas|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>Tipo de Empresa:</td>
+            <td>{{ interview.tipo_empresa }}</td>
+        </tr>
+        <tr>
+            <td>Horas de Trabajo:</td>
+            <td>{{ interview.horas_trabajo }}</td>
+        </tr>
+        <tr>
+            <td>Ingreso Mensual:</td>
+            <td>{{ interview.ingreso_mensual }}</td>
+        </tr>
+        <tr>
+            <td>Horario Laboral:</td>
+            <td>{{ interview.horario_laboral }}</td>
+        </tr>
+        <tr>
+            <td>¿De quién dependes económicamente?:</td>
+            <td>{{ interview.dependes_economicamente }}</td>
+        </tr>
+        <tr>
+            <td>Ocupación del Padre:</td>
+            <td>{{ interview.ocupacion_padre }}</td>
+        </tr>
+        <tr>
+            <td>Ingreso del Padre:</td>
+            <td>{{ interview.ingreso_padre }}</td>
+        </tr>
+        <tr>
+            <td>Ocupación de la Madre:</td>
+            <td>{{ interview.ocupacion_madre }}</td>
+        </tr>
+        <tr>
+            <td>Ingreso de la Madre:</td>
+            <td>{{ interview.ingreso_madre }}</td>
+        </tr>
+        <tr>
+            <td>Número de Hermanos:</td>
+            <td>{{ interview.hermanos }}</td>
+        </tr>
+        <tr>
+            <td>Actividad de los Hermanos:</td>
+            <td>{{ interview.actividad_hermanos }}</td>
+        </tr>
+        <tr>
+            <td>Tipo de Casa:</td>
+            <td>{{ interview.tipo_casa }} {% if interview.tipo_casa_otros %} ({{ interview.tipo_casa_otros }}) {% endif %}</td>
+        </tr>
+        <tr>
+            <td>Beca Bachillerato:</td>
+            <td>{{ interview.beca_bachillerato|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>Motivo de Beca:</td>
+            <td>{{ interview.motivo_beca }}</td>
+        </tr>
+        <tr>
+            <td>Cualidades:</td>
+            <td>{{ interview.cualidades }}</td>
+        </tr>
+        <tr>
+            <td>Habilidades:</td>
+            <td>{{ interview.habilidades }}</td>
+        </tr>
+        <tr>
+            <td>Debilidades:</td>
+            <td>{{ interview.debilidades }}</td>
+        </tr>
+        <tr>
+            <td>Valores:</td>
+            <td>{{ interview.valores }}</td>
+        </tr>
+        <tr>
+            <td>Disgustos:</td>
+            <td>{{ interview.disgustos }}</td>
+        </tr>
+        <tr>
+            <td>Temores:</td>
+            <td>{{ interview.temores }}</td>
+        </tr>
+        <tr>
+            <td>Pareja Sentimental:</td>
+            <td>{{ interview.pareja_sentimental }}</td>
+        </tr>
+        <tr>
+            <td>Futuro Personal:</td>
+            <td>{{ interview.futuro_personal }}</td>
+        </tr>
+        <tr>
+            <td>Estado de Salud:</td>
+            <td>{{ interview.estado_salud }}</td>
+        </tr>
+        <tr>
+            <td>¿Estás en Tratamiento Médico?:</td>
+            <td>{{ interview.tratamiento_medico|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>¿Tienes Alguna Discapacidad?:</td>
+            <td>{{ interview.discapacidad|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>¿Recibes Ayuda Psicológica?:</td>
+            <td>{{ interview.ayuda_psicologica|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>Dependientes Económicos:</td>
+            <td>{{ interview.dependientes_economicos }}</td>
+        </tr>
+        <tr>
+            <td>Escuela de Procedencia:</td>
+            <td>{{ interview.escuela_procedencia }}</td>
+        </tr>
+        <tr>
+            <td>Motivo para Elegir esta Universidad:</td>
+            <td>{{ interview.motivo_universidad }}</td>
+        </tr>
+        <tr>
+            <td>¿Es esta Universidad tu Primera Opción?:</td>
+            <td>{{ interview.universidad_primera_opcion|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>Expectativas de la Carrera:</td>
+            <td>{{ interview.expectativas_carrera }}</td>
+        </tr>
+        <tr>
+            <td>¿Realizaste el Examen de Admisión?:</td>
+            <td>{{ interview.examen_admision|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>¿Reprobaste Materias?:</td>
+            <td>{{ interview.materias_reprobadas|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>Materias con Dificultad:</td>
+            <td>{{ interview.materias_dificultad }}</td>
+        </tr>
+        <tr>
+            <td>¿Usas alguna Técnica de Estudio?:</td>
+            <td>{{ interview.tecnica_estudio|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>¿Tienes un Espacio Adecuado para Estudiar?:</td>
+            <td>{{ interview.espacio_estudio|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>¿Tienes Computadora con Internet?:</td>
+            <td>{{ interview.computadora_internet|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <td>Planes para Terminar la Carrera:</td>
+            <td>{{ interview.planes_terminar_carrera }}</td>
+        </tr>
+        <tr>
+            <td>Tipo de Trabajo que te Gustaría Tener:</td>
+            <td>{{ interview.tipo_trabajo }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="{% url 'students_list' %}">Volver a la lista de estudiantes</a>
+{% endblock %}

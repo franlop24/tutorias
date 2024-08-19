@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Análisis de Cumplimiento de Tutoría{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cumplimiento.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <div class="scroll-container">
+        <div class="periodo-select">
+            <form method="get" action="{% url 'consultas_por_periodo' current_period.id %}">
+                <select name="periodo" onchange="if(this.value) { window.location.href='{% url 'consultas_por_periodo' 0 %}'.replace('0', this.value); }">
+                    <option value="" {% if not current_period or current_period.id == 0 %}selected{% endif %}>
+                        Seleccione un periodo:
+                    </option>
+                    {% for period in periods %}
+                        <option value="{{ period.id }}" {% if period.id == current_period.id %}selected{% endif %}>
+                            {{ period.period }}: {{ period.year }}
+                        </option>
+                    {% endfor %}
+                </select>
+                
+                <select name="carrera" onchange="this.form.submit()">
+                    <option value="">Seleccione una carrera:</option>
+                    {% for career in careers %}
+                        <option value="{{ career.id }}" {% if career == selected_career %}selected{% endif %}>
+                            {{ career.short_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <select name="mes" onchange="this.form.submit()">
+                    <option value="">Seleccione un mes:</option>
+                    {% for month in months_available %}
+                        <option value="{{ month }}" {% if selected_mes == month|stringformat:"s" %}selected{% endif %}>
+                            {% if month == 1 %}Enero{% elif month == 2 %}Febrero{% elif month == 3 %}Marzo{% elif month == 4 %}Abril{% elif month == 5 %}Mayo{% elif month == 6 %}Junio{% elif month == 7 %}Julio{% elif month == 8 %}Agosto{% elif month == 9 %}Septiembre{% elif month == 10 %}Octubre{% elif month == 11 %}Noviembre{% elif month == 12 %}Diciembre{% endif %}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+
+        <div class="info-estatica">
+            <p><strong>Director de Carrera:</strong> M.S.C Manuel Flores Nava.</p>
+            <p><strong>Coordinadora de Tutoría:</strong> M. en . C Julia Gabriela Nieva Paredes.</p>
+        </div>
+
+        <div class="grupo-scroll-container">
+            <div class="grupo-container">
+                {% for grupo in grupos %}
+                    <div class="grupo-item">
+                        <div class="info-container">
+                            <p><strong>Tutor:</strong> {{ grupo.Tutor }}</p>
+                            <p><strong>Carrera:</strong> {{ grupo.Carrera }}</p>
+                            <p><strong>Grupo:</strong> {{ grupo.Grupo }}</p>
+                            <p><strong>Cuatrimestre:</strong> {{ grupo.Cuatrimestre }}</p>
+                        </div>
+                        <div class="actividades-container">
+                            <ul class="lista-actividades">
+                                {% if grupo.Actividades %}
+                                    {% for actividad in grupo.Actividades %}
+                                        <li>
+                                            <strong>{{ actividad.nombre_actividad }}</strong>
+                                            {% if actividad.evidencia_lista_asistencia %}
+                                                <br><a href="{{ actividad.evidencia_lista_asistencia }}" target="_blank">Evidencia Lista de Asistencia</a>
+                                            {% else %}
+                                                <br>Sin lista de asistencia
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                {% else %}
+                                    <li>No hay reportes existentes.</li>
+                                {% endif %}
+                            </ul>
+                            <div class="canalizacion-container">
+                                <h3>Canalización:</h3>
+                                {% if grupo.ReporteCanalizacion %}
+                                    <p><a href="{{ grupo.ReporteCanalizacion }}" target="_blank">Enlace a Canalización</a></p>
+                                {% else %}
+                                    <p>No hay ninguna canalización.</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="seguimiento-container">
+                                <h3>Seguimiento:</h3>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

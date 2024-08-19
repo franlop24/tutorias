@@ -3,34 +3,59 @@
 {% block title %}Lista de Estudiantes{% endblock %}
 
 {% block content %}
-<h2>Lista de Estudiantes del Grupo {{ group.semester }} {{ group.group }} {{ group.career }}</h2>
+<h2>Lista de Estudiantes</h2>
 
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Matrícula</th>
-            <th>Correo Electrónico</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% if students %}
-            {% for student in students %}
+<form method="get" action="{% url 'students_list' %}">
+    <label for="group-select">Seleccione un grupo:</label>
+    <select id="group-select" name="group_id" onchange="this.form.submit()">
+        <option value="">Seleccione un grupo</option>
+        {% for group in groups %}
+            <option value="{{ group.id }}" {% if group == selected_group %}selected{% endif %}>{{ group.semester }} {{ group.group }} {{ group.career }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+{% if selected_group %}
+    <h2>Grupo: {{ selected_group.semester }} {{ selected_group.group }} {{ selected_group.career }}</h2>
+    <table>
+        <thead>
             <tr>
-                <td>{{ student.get_full_name }}</td>
-                <td>{{ student.enrollment }}</td>
-                <td>{{ student.email }}</td>
+                <th>Nombre</th>
+                <th>Matrícula</th>
+                <th>Correo Electrónico</th>
+                <th>Acciones</th>
             </tr>
-            {% empty %}
-            <tr>
-                <td colspan="3">No hay estudiantes asignados a este grupo aún.</td>
-            </tr>
-            {% endfor %}
-        {% else %}
-            <tr>
-                <td colspan="3">No hay estudiantes asignados a este grupo aún.</td>
-            </tr>
-        {% endif %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {% if students %}
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.get_full_name }}</td>
+                    <td>{{ student.enrollment }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>
+                        <form action="{% url 'reactivate_interview' student.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-reactivate">Reactivar Entrevista</button>
+                        </form>
+                        <div style="display: inline-block; margin-left: 10px;">
+                            <a href="{% url 'view_interview' student.id %}" class="btn-view">Ver Respuestas</a> <!-- Botón para ver respuestas -->
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No hay estudiantes asignados a este grupo aún.</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">No hay estudiantes asignados a este grupo aún.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Por favor seleccione un grupo para ver los estudiantes.</p>
+{% endif %}
 {% endblock %}

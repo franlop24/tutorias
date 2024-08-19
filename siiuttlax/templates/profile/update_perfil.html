@@ -1,17 +1,23 @@
 <!-- templates/profile/update_perfil.html -->
 {% extends 'base.html' %}
 
-{% block title %}Actualizar Perfil{% endblock %}
+{% block title %}Actualizar datos del Perfil{% endblock %}
 
 {% block content %}
-  <h2>Actualizar Perfil</h2>
+<div class="form-spacing-perfil"></div> 
+<div class="update-profile-container">
+  <h2>Actualizar Datos del Perfil</h2>
   
-  <form method="POST">
+  <form method="POST" class="update-profile-form">
     {% csrf_token %}
     
     <h3>Datos del Perfil</h3>
     {{ profile_form.as_p }}
     
-    <button type="submit">Guardar Cambios</button>
+    <label for="ageField">Edad:</label>
+    <input type="text" id="ageField" name="age" readonly>
+    
+    <button type="submit" class="success">Guardar Cambios</button>
   </form>
+</div>
 {% endblock %}

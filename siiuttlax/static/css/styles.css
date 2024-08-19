@@ -1,0 +1,424 @@
+/* Estilos del navbar */
+nav {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 4rem;
+    padding: 0 0.625rem;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+nav img {
+    width: auto;
+    height: 1.875rem;
+}
+
+nav h1 {
+    font-size: 1.4375rem;
+    font-weight: 500;
+    margin-left: 1.25rem;
+}
+
+nav .navigation {
+    max-width: 40rem;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin-left: auto;
+    align-items: center;
+}
+
+nav .navigation li {
+    position: relative;
+    transition: all 0.5s ease;
+    flex-grow: 1;
+    user-select: none;
+    width: auto;
+}
+
+nav .navigation a {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 0.5625rem 0.9375rem;
+    color: black;
+    min-height: 4rem;
+    letter-spacing: 0.03rem;
+    text-decoration: none;
+    transition: all 0.7s ease;
+}
+
+nav .navigation a:hover {
+    background-position: 0;
+    color: #19bd66;
+}
+
+nav .navigation>li:hover>a {
+    background-position: 0;
+    color: #19bd66;
+}
+
+nav .subnavigation__wrapper {
+    overflow: hidden;
+    max-height: 0;
+    position: absolute;
+    transition: max-height 0.3s ease-in-out;
+    background-color: white;
+    width: auto;
+    white-space: nowrap;
+    font-size: 1rem;
+}
+
+nav .navigation li:hover .subnavigation__wrapper {
+    max-height: 50rem;
+    top: 4rem;
+    display: flex;
+    flex-direction: column;
+    color: #19bd66;
+}
+
+nav .navigation ul {
+    padding: 0;
+}
+
+nav .navigation li ul li a {
+    padding: 0.5rem 1rem;
+}
+
+nav ul li:hover .js-arrow {
+    transform: rotate(180deg);
+    transition: max-height all 0.5s ease;
+}
+
+button {
+    background: rgb(0, 0, 0);
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 0.625rem 1.4375rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 0.25rem 0.125rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 0.3125rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+    background-color: #19bd66;
+    color: black;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para el formulario de entrevista inicial */
+.interview-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.interview-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+}
+
+.interview-form p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Asegura que todos los campos del formulario se alineen bien */
+.interview-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.interview-form input,
+.interview-form select,
+.interview-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.interview-form textarea {
+    resize: vertical;
+    height: 120px; /* Ajustar la altura del área de texto */
+}
+
+.interview-form .btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+.interview-form .btn-submit:hover {
+    background-color: #45a049;
+}
+
+.interview-form .form-group {
+    margin-bottom: 15px;
+}
+
+.form-spacing {
+    height: 10000px;
+}
+
+@media (max-width: 600px) {
+    .interview-form {
+        padding: 10px;
+        max-width: 100%;
+    }
+}
+
+/* Estilos del formulario para actualizar perfil */
+.update-profile-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Encabezado del formulario */
+.update-profile-form h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Sección de datos del perfil */
+.update-profile-form h3 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Estilos para los campos del formulario */
+.update-profile-form input, 
+.update-profile-form select, 
+.update-profile-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.update-profile-form textarea {
+    height: 120px;
+    width: 562px;
+}
+
+/* Estilo del campo de edad */
+#ageField {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* Botón de Éxito */
+.update-profile-form button.success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.update-profile-form button.success:hover {
+    background-color: #218838;
+}
+
+.form-spacing-perfil {
+    height: 600px;
+}
+
+/* Estilos perfil estudiante */
+/* Contenedor principal del dashboard */
+.dashboard-container {
+    display: flex;
+    gap: 20px; /* Espacio entre los contenedores */
+}
+
+/* Contenedor de información del perfil del estudiante */
+.profile-info {
+    flex: 1; /* Ocupa una parte del contenedor flex */
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Datos del perfil de estudiante */
+.profile-info h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Sección de datos del perfil */
+.profile-info h3 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Información de perfil */
+.profile-info p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Contenedor de detalles del estudiante */
+.student-details {
+    flex: 3; /* Ocupa más espacio en comparación con profile-info */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Sección de datos del perfil */
+.student-details h3 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Información de perfil */
+.student-details p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Estilos para el contenedor del mensaje flotante */
+.floating-message {
+    position: fixed;
+    top: 50%;  /* Centrar verticalmente */
+    left: 50%;  /* Centrar horizontalmente */
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+/* Estilos del body para centrar el contenido */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+/* Estilos del contenedor hoja */
+.hoja {
+    width: 21cm; 
+    min-height: 29.7cm; 
+    padding: 2cm;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Asegura que el contenido interno esté centrado horizontalmente */
+    overflow: hidden;
+    margin-top: 4rem; /* Espacio suficiente para separar la barra de navegación */
+}
+
+/* Estilos para el header y footer */
+header, footer {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+header img, footer img {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Estilos para el formulario */
+.encabezado {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.encabezado h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 1cm;
+}
+
+.encabezado p {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.encabezado input, .encabezado textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.encabezado input[type="date"] {
+    width: auto;
+}
+
+.encabezado button, .encabezado input[type="file"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+@media (max-width: 1500px) {
+    .hoja {
+        margin-top: 7rem; /* Ajustar el margen para dispositivos móviles si es necesario */
+    }
+}
+

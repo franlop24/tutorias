@@ -6,7 +6,7 @@ from .models import InitialInterview
 class InitialInterviewForm(forms.ModelForm):
     class Meta:
         model = InitialInterview
-        exclude = ['student']  # Excluye el campo 'student' ya que lo asignaremos manualmente en la vista
+        exclude = ['student', 'active']  # Excluye 'active' del formulario
         widgets = {
             'interview_date': forms.DateInput(attrs={'type': 'date'}),
         }

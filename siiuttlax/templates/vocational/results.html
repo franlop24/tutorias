@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header>
+    <h1 class="welcome">Resultados</h1>
+    <div class="div-btn-logout">
+        <form action="{% url 'home:home' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Inicio" class="btn-logout">
+        </form>
+    </div>
+</header>
+
+<ul>
+    {% for exammodule in modules %}
+    <li>{{ exammodule.module.name }} <br><br> {{ exammodule.score }} / {{ exammodule.module.question_set.count }}</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

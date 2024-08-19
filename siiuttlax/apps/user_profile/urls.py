@@ -1,9 +1,9 @@
 # apps/user_profile/urls.py
-
 from django.urls import path
-from .views import admin_dashboard, custom_404_view, login_view, student_dashboard, professor_dashboard, update_perfil, update_profile
+from .views import admin_dashboard, custom_404_view, login_view, student_dashboard, professor_dashboard, update_perfil, update_profile, home
 
 urlpatterns = [
+    path('home/', home, name='home'),
     path('login/', login_view, name='Login'),
     path('student/dashboard/', student_dashboard, name='student_dashboard'),
     path('professor/dashboard/', professor_dashboard, name='professor_dashboard'),

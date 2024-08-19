@@ -1,0 +1,13 @@
+<!-- initial_interview_form.html -->
+
+{% extends 'base.html' %}
+{% block title %}Llenar Entrevista Inicial{% endblock %}
+
+{% block content %}
+    <h2>Llenar Entrevista Inicial</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Entrevista</button>
+    </form>
+{% endblock %}

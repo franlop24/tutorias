@@ -6,7 +6,6 @@ Description: Configuración de Proyecto SIIUTTLAX
 """
 
 import os
-
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -14,7 +13,6 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -27,12 +25,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
     # local Apps
-    'apps.seguimiento.apps.SeguimientoConfig',
+    'apps.seguimiento.apps.SeguimientoConfig',       # from seguimientoA branch
+    'apps.vocational.apps.VocationalConfig',         # from develop branch
+    'apps.library.apps.LibraryConfig',               # from develop branch
+    'apps.reporte_tutoria.apps.ReporteTutoriaConfig',# from develop branch
     'apps.justify.apps.JustifyConfig',
     'apps.career.apps.CareerConfig',
     'apps.home.apps.HomeConfig',
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.academy.apps.AcademyConfig',
     'apps.user_profile.apps.UserProfileConfig', 
     'apps.interview.apps.InterviewConfig', 
+    'apps.testvak.apps.VAKInterviewConfig', 
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -82,15 +83,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'siiuttlax.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': str(os.getenv('DB_NAME')),
@@ -100,7 +96,6 @@ DATABASES = {
         'PORT': str(os.getenv('DB_PORT')),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -120,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -132,27 +126,20 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-# settings.py
 
-...
-
-# Define the directories where Django will look for static files
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
- # Comment in production
+# Comment in production
 #STATIC_ROOT = BASE_DIR / 'static' # Uncomment in production
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# settings.py
-
-
-
-
-
+# Redirige a la página de inicio después de cerrar sesión
+LOGOUT_REDIRECT_URL = '/'

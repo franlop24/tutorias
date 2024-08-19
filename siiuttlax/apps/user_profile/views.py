@@ -77,22 +77,22 @@ def admin_dashboard(request):
     # Verificar si el usuario autenticado es un profesor
     try:
         admin_profile = request.user.admin
+        user_type = 'administrador'
     except Admin.DoesNotExist:
         # Si no es profesor, redirige a la página de inicio
         return render(request, 'profile/error_404.html', {'message': 'No se encontró el perfil asociado al modulo'})
     
-    return render(request, 'home/admin_dbar.html', {'user': request.user, 'admin': admin_profile})
+    return render(request, 'home/admin_dbar.html', {'user': request.user, 'admin': admin_profile ,'user_type': user_type})
 
 def custom_404_view(request, exception):
     return render(request, 'profile/error_404.html', {'message': 'No se encontró el perfil asociado al modulo'})
 
-# views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from .forms import ProfileUpdateForm  
-from apps.academy.models import Professor, Student  
+from .forms import ProfileUpdateForm
+from apps.academy.models import Professor, Student
 
 @login_required
 def update_profile(request):
@@ -102,7 +102,7 @@ def update_profile(request):
         user_form = ProfileUpdateForm(request.POST, instance=user)
         if user_form.is_valid():
             user = user_form.save()
-            
+
             # Actualizar matrícula si el usuario es un estudiante
             if hasattr(user, 'student'):
                 enrollment = user_form.cleaned_data.get('enrollment')
@@ -124,6 +124,7 @@ def update_profile(request):
         user_form = ProfileUpdateForm(instance=user)
     
     return render(request, 'profile/update_profile.html', {'user_form': user_form})
+
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -158,6 +159,22 @@ def update_perfil(request):
         profile_form = ProfileForm(instance=request.user.profile)
     
     return render(request, 'profile/update_perfil.html', {'profile_form': profile_form})
+
+from django.shortcuts import redirect
+
+def home(request):
+    user = request.user
+    if hasattr(user, 'student'):
+        return redirect('student_dashboard')
+    elif hasattr(user, 'professor'):
+        return redirect('professor_dashboard')
+    elif hasattr(user, 'admin'):
+        return redirect('admin_dashboard')
+    else:
+        return redirect('/')  # Redirigir a la página inicial si no tiene un perfil específico
+
+
+
 
 
 
