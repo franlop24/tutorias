@@ -49,22 +49,59 @@
                     </ul>
                 </div>
             </li>
-            {% if user.is_authenticated %}
-            {% if user_type == 'profesor' %}
-                    {% include 'shared/menu_professor.html' %}
-                {% elif user_type == 'estudiante' %}
-                    {% include 'shared/menu_student.html' %}
-                {% elif user_type == 'administrador' %}
-                    {% include 'shared/menu_admin.html' %}
-                {% endif %}
-            {% endif %}
+            <li>
+                <a href="#">
+                    Tutoría
+                    <i class='bx bxs-chevron-down js-arrow'></i>
+                </a>
+                <div class="subnavigation__wrapper">
+                    <ul>
+                        <li>
+                            <a href="">
+                                Justificantes Alumno
+                            </a>
+                        </li>
+                        <li>
+                            <a href="justifying_teacher.html">
+                                Justificantes Tutores
+                            </a>
+                        </li>
+                        <li>
+                            <a href="justifying_principal.html">
+                                Justificantes Director
+                            </a>
+                        </li>
+                        <li>
+                            <a href="individual_monitoring.html">
+                                Seguimiento Individual
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'index' %}">
+                                Seguimiento Tutorial
+                            </a>
+                        </li>
+                        <li>
+                            <a href="survey_leave.html">
+                                Encuesta Causa de Baja
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li>
                 <a href="#">
                     Servicios
                 </a>
             </li>
             {% if user.is_authenticated %}
-
+                {% if user_type == 'profesor' %}
+                    {% include 'shared/menu_professor.html' %}
+                {% elif user_type == 'estudiante' %}
+                    {% include 'shared/menu_student.html' %}
+                {% elif user_type == 'administrador' %}
+                    {% include 'shared/menu_admin.html' %}
+                {% endif %}
                 <li>
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}

@@ -118,10 +118,7 @@ nav .navigation li {
     position: relative;
     transition: all 0.5s ease;
     flex-grow: 1;
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+    user-select: none;
     width: auto;
 }
 
@@ -203,6 +200,32 @@ button:hover {
     background-color: #19bd66;
     color: black;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Tabla de seguimiento */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: #04AA6D;
+    color: white;
+}
+
+/* Contenedor de la tabla */
+.container {
+    padding-top: 50px;
+    overflow: scroll;
 }
 
 /* Estilos para el formulario de entrevista inicial */
@@ -305,7 +328,6 @@ button:hover {
     font-size: 18px;
     color: #555;
     margin-bottom: 10px;
-    /*text-align: center;*/
 }
 
 /* Estilos para los campos del formulario */
@@ -319,7 +341,8 @@ button:hover {
     border-radius: 5px;
     box-sizing: border-box;
 }
-.update-profile-form textarea{
+
+.update-profile-form textarea {
     height: 120px;
     width: 562px;
 }
@@ -331,125 +354,18 @@ button:hover {
 }
 
 /* Botón de Éxito */
-.update-profile-form button.success {
-    background-color: #28a745;
-    color: #fff;
-}
-
-.update-profile-form button.success:hover {
-    background-color: #218838;
-}
-
-.form-spacing-perfil {
-    height: 150px;
-}
-
-/* Estilos perfil estudiante */
-/* Contenedor principal del dashboard */
-.dashboard-container {
-    display: flex;
-    gap: 20px; /* Espacio entre los contenedores */
-}
-
-/* Contenedor de información del perfil del estudiante */
-.profile-info {
-    flex: 1; /* Ocupa una parte del contenedor flex */
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Datos del perfil de estudiante */
-.profile-info h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-/* Sección de datos del perfil */
-.profile-info h3 {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-/* Información de perfil */
-.profile-info p {
+.update-profile-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     font-size: 16px;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-/* Contenedor de detalles del estudiante */
-.student-details {
-    flex: 3; /* Ocupa más espacio en comparación con profile-info */
-    padding: 20px;
-    border-radius: 10px;
-}
-
-/* Sección de datos del perfil */
-.student-details h3 {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-/* Información de perfil */
-.student-details p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-/* Estilos para el contenedor del mensaje flotante */
-.floating-message {
-    position: fixed;
-    top: 50%;  /* Centrar verticalmente */
-    left: 50%;  /* Centrar horizontalmente */
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    max-width: 400px;
-    width: 100%;
     text-align: center;
 }
 
-/* Estilos específicos para el botón de reactivación */
-.btn-reactivate {
-    background-color: #21bb18; /* Color de fondo del botón */
-    color: white; /* Color del texto */
-    padding: 0.5rem 1rem; /* Espaciado interno del botón */
-    border: none; /* Sin borde */
-    border-radius: 4px; /* Bordes redondeados */
-    font-size: 14px; /* Tamaño de la fuente */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s, color 0.3s; /* Transición suave para el cambio de color */
+/* Botón de éxito al hacer hover */
+.update-profile-form button:hover {
+    background-color: #0069d9;
 }
-
-.btn-reactivate:hover {
-    background-color: #00e68a; /* Color de fondo en hover */
-    color: black; /* Color del texto en hover */
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
