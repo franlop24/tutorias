@@ -1,11 +1,15 @@
 from django import forms
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from apps.academy.models import Admin, Professor, Student
+from django.shortcuts import render, redirect
 
+from apps.academy.models import Admin, Professor, Student
+from .models import Profile
+
+from .forms import ProfileUpdateForm
+from .forms import ProfileForm, ProfileUpdateForm
 
 def login_view(request):
     form = AuthenticationForm(request, request.POST or None)
@@ -87,13 +91,6 @@ def admin_dashboard(request):
 def custom_404_view(request, exception):
     return render(request, 'profile/error_404.html', {'message': 'No se encontró el perfil asociado al modulo'})
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
-from .forms import ProfileUpdateForm
-from apps.academy.models import Professor, Student
-
 @login_required
 def update_profile(request):
     user = request.user  # Obtener el usuario actualmente autenticado
@@ -125,15 +122,6 @@ def update_profile(request):
     
     return render(request, 'profile/update_profile.html', {'user_form': user_form})
 
-
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
-from .forms import ProfileForm, ProfileUpdateForm
-from apps.academy.models import Professor, Student
-from apps.academy.models import Profile
-
 @login_required
 def update_perfil(request):
     user = request.user
@@ -160,8 +148,6 @@ def update_perfil(request):
     
     return render(request, 'profile/update_perfil.html', {'profile_form': profile_form})
 
-from django.shortcuts import redirect
-
 def home(request):
     user = request.user
     if hasattr(user, 'student'):
@@ -172,21 +158,3 @@ def home(request):
         return redirect('admin_dashboard')
     else:
         return redirect('/')  # Redirigir a la página inicial si no tiene un perfil específico
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

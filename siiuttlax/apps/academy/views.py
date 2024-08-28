@@ -1,10 +1,14 @@
 # academy/views.py
-
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate
 from django.contrib import messages
-from .forms import StudentRegistrationForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
+
 from apps.vocational.models import Exam
+from apps.group.models import Group
+from apps.interview.models import InitialInterview
+
+from .models import Professor
+from .forms import AdminForm, StudentRegistrationForm, ProfessorForm
 
 def register(request):
     if request.method == 'POST':
@@ -20,11 +24,6 @@ def register(request):
         form = StudentRegistrationForm()
     return render(request, 'login/register.html', {'form': form})
 
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from apps.group.models import Group
-from apps.interview.models import InitialInterview
 
 @login_required
 def students_list(request):
@@ -46,7 +45,6 @@ def students_list(request):
     if selected_group:
         interviews = InitialInterview.objects.filter(grupo_escolar=selected_group)
         students = [interview.student for interview in interviews if interview.student]
-        
 
     return render(request, 'interview/students_list.html', {
         'groups': groups,
@@ -62,9 +60,6 @@ def reactivate_interview(request, student_id):
     messages.success(request, 'La entrevista inicial ha sido reactivada.')
     return redirect('students_list')
 
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from apps.interview.models import InitialInterview
 
 @login_required
 def view_interview(request, student_id):
@@ -73,10 +68,6 @@ def view_interview(request, student_id):
         'interview': interview
     })
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from .forms import ProfessorForm
-from .models import Professor
 
 @login_required
 def create_professor(request):
@@ -96,9 +87,6 @@ def create_professor(request):
     return render(request, 'manage/admin_create_professor.html', {'form': form, 'professors': professors})
 
 
-from django.shortcuts import render, redirect
-from .forms import AdminForm
-
 def register_admin(request):
     if request.method == 'POST':
         form = AdminForm(request.POST)
@@ -113,13 +101,3 @@ def register_admin(request):
         form = AdminForm()
     
     return render(request, 'login/admin_register.html', {'form': form})
-
-
-
-
-
-
-
-
-
-
